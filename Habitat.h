@@ -19,13 +19,14 @@ class Habitat{
 protected:
     string tipoHabitat;
     int contAnimal;
-    
+    unordered_map<int, Animal*> mapaAnimales;
 
 public:
     Habitat() = default;
-    virtual Habitat* crearHabitat(int opc) = 0;
-    virtual string getTipoHabitat() = 0;
-    virtual int getContAnimal() = 0;
+    string getTipoHabitat();
+    void agregarAnimal(Animal*);
+    int getContAnimal();
+    void listarAnimales();
 
 
 };

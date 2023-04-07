@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <unordered_map>
 #include "Habitat.h"
 
 using std::string;
@@ -17,10 +18,18 @@ protected:
     Habitat* pHabitat;
     int id;
     string habitatPertenece;
-    int tipoAlimentacion;
+    string tipoAlimentacion;
+    int contComida;
+    unordered_map<int, string> mapaComidas;
 
 public:
     Animal() = default;
+    Animal(string nombre, string especie, int id, string habitatPertenece, string tipoAlimentacion);
+    int getId();
+    string getHabitatPertenece();
+    string getNombre();
+    string getAlimentacion();
+    void agregarComida(string comida);
     void comer(Habitat* habitatAn, int idAn, string nombreAcc);
     void jugar(Habitat* habitatAn, int idAn, string nombreAcc);
     void dormir(Habitat* habitatAn, int idAn, string nombreAcc);

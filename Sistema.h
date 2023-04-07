@@ -24,12 +24,14 @@ using std::getline;
 class Sistema{
 protected:
     int contHabitats;
+    int contAnimales;
     unordered_map<int, Habitat*> mapaHabitats;
     
 public:
     Sistema() = default;
     void añadirHabitat();
     void añadirAnimalHabitat();
+    Animal* crearAnimal();
     void mostrarHabitats();
     void listarHabitats();
     void ingresarAccionAnimal();

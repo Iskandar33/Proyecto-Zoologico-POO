@@ -17,8 +17,9 @@ protected:
 
 public:
     Polar() = default;
-    Habitat* crearHabitat(int opc) override;
-
+    void agregarAnimal(Animal*);
+    string getTipoHabitat;
+    int getContAnimal();
 
 };
 #endif
