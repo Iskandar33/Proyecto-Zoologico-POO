@@ -15,16 +15,17 @@ class Animal{
 protected:
     string nombre;
     string especie;
-    Habitat* pHabitat;
     int id;
     string habitatPertenece;
     string tipoAlimentacion;
+    int horasDormir;
+    int jugar;
     int contComida;
     unordered_map<int, string> mapaComidas;
 
 public:
     Animal() = default;
-    Animal(string nombre, string especie, int id, string habitatPertenece, string tipoAlimentacion);
+    Animal(string nombre, string especie, int id, string habitatPertenece, string tipoAlimentacion, int horasDormir);
     int getId();
     string getHabitatPertenece();
     string getNombre();

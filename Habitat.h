@@ -23,6 +23,7 @@ protected:
 
 public:
     Habitat() = default;
+    Habitat(string tipoHabitat);
     string getTipoHabitat();
     void agregarAnimal(Animal*);
     int getContAnimal();

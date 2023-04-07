@@ -1,25 +1,15 @@
 #include "Sistema.h"
 
 void Sistema::añadirHabitat(){
-    int opc;
+    string opc;
     Habitat* pTempHabitat;
     
     cout << "Hay 4 hábitats posibles para crear, estos son:" << endl;
     cout << "1. Desértico \n2. Selvático \n3. Polar \n4.Acuático" << endl;
-    cout << "Ingrese el hábitat deseado" << endl;
-    cin >> opc;
-    if(opc == 1){
-        Desertico* pTempHabitat = new Desertico();
-    }
-    else if(opc == 2){
-        Selvatico* pTempHabitat = new Selvatico();
-    }
-    else if(opc == 3){
-        Polar* pTempHabitat = new Polar();
-    }
-    else{
-        Acuatico* pTempHabitat = new Acuatico();
-    }
+    cout << "Ingrese el nombre del hábitat deseado" << endl;
+    cin.ignore();
+    getline(cin, opc, '\n');
+    pTempHabitat = new Habitat(opc);
     this->mapaHabitats.insert(make_pair(this->contHabitats, pTempHabitat));
     this->contHabitats++;
 }
@@ -38,6 +28,7 @@ void Sistema::añadirAnimalHabitat(){
 Animal* Sistema::crearAnimal(){
     Animal* pTempAnimal;
     string nombre, especie, habitatPertenece, tipoAlimentacion, comida;
+    int horasDormir;
     cout << "Ingrese el nombre: " << endl;
     cin.ignore();
     getline(cin, nombre, '\n');
@@ -50,7 +41,9 @@ Animal* Sistema::crearAnimal(){
     cout << "La alimentación va de la siguiente forma\n 1. Carnivoros\n2. Herviboros\n3. Omnivoros." << endl;
     cin.ignore();
     getline(cin, tipoAlimentacion, '\n');
-    pTempAnimal = new Animal(nombre, especie, this->contAnimales, habitatPertenece, tipoAlimentacion);
+    cout << "Ingrese las horas que el animal debe de dormir : " << endl;
+    cin >> horasDormir;
+    pTempAnimal = new Animal(nombre, especie, this->contAnimales, habitatPertenece, tipoAlimentacion, horasDormir);
     cout << "Ingrese 3 comidas que el animal coma según su alimentación: " << endl;
     for(int i = 0; i <= 3; i++){
         cout << "Ingrese la comida: " << endl;

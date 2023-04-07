@@ -4,10 +4,6 @@
 #include <string>
 #include <iostream>
 #include "Habitat.h"
-#include "Acuatico.h"
-#include "Desertico.h"
-#include "Polar.h"
-#include "Selvatico.h"
 #include "Animal.h"
 #include <unordered_map>
 

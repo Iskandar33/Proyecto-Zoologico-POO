@@ -4,6 +4,10 @@ string Habitat::getTipoHabitat(){
     return this->tipoHabitat;
 }
 
+Habitat::Habitat(string tipoHabitat)
+        : tipoHabitat(tipoHabitat){}
+
+
 void Habitat::agregarAnimal(Animal* pAnimal){
     if(pAnimal->getHabitatPertenece() == this->tipoHabitat){
         this->mapaAnimales.insert(make_pair(pAnimal->getId(), pAnimal));
