@@ -19,7 +19,7 @@ protected:
     string habitatPertenece;
     string tipoAlimentacion;
     int horasDormir;
-    int jugar;
+    int verificadorJugar;
     int contComida;
     unordered_map<int, string> mapaComidas;
 
@@ -31,9 +31,10 @@ public:
     string getNombre();
     string getAlimentacion();
     void agregarComida(string comida);
-    void comer(Habitat* habitatAn, int idAn, string nombreAcc);
-    void jugar(Habitat* habitatAn, int idAn, string nombreAcc);
-    void dormir(Habitat* habitatAn, int idAn, string nombreAcc);
-
+    void comer(Animal* pAnimal);
+    void mostrarComida();
+    void jugar(Animal* pAnimal);
+    void dormir(Animal* pAnimal);
+    int getHorasDormir();
 };
 #endif

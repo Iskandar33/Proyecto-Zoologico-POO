@@ -23,6 +23,7 @@ void Sistema::añadirAnimalHabitat(){
     cin >> opc;
     habitatEscogido = this->mapaHabitats.find(opc)->second;
     habitatEscogido->agregarAnimal(pTempAnimal);
+    this->mapaAnimalesTotal.insert(make_pair(this->contAnimales, pTempAnimal));
 }
 
 Animal* Sistema::crearAnimal(){
@@ -69,5 +70,38 @@ void Sistema::listarHabitats(){
         cout << "Habitat " << itMap->second->getTipoHabitat() << " con " << itMap->second->getContAnimal() << " animales en este"<< endl;
         cout << "Los animales son: " << endl;
         itMap->second->listarAnimales();
+    }
+}
+
+void Sistema::ingresarAccionAnimal(){
+    string accion;
+    int opc;
+    Animal* pTempAnimal;
+    this->mostrarAnimalTotal();
+    cout << "Ingrese el ID del animal a seleccionar: " << endl;
+    cin >> opc;
+    pTempAnimal = this->mapaAnimalesTotal.find(opc)->second;
+    cout << "Las acciones que puede realizar un animal son: " << endl;
+    cout << "1. Comer.\n2.Jugar.\n3.Dormir." << endl;
+    cout << "Ingrese el nombre de la acción a realizar: " << endl; 
+    cin.ignore();
+    getline(cin, accion, '\n');
+    if(accion == "Comer"){
+        pTempAnimal->comer(pTempAnimal);
+    }
+    else if(accion == "Jugar"){
+        pTempAnimal->jugar(pTempAnimal);
+    }
+    else{
+        pTempAnimal->dormir(pTempAnimal);
+    }
+}
+
+void Sistema::mostrarAnimalTotal(){
+    unordered_map<int, Animal*>::iterator itMap;
+    cout << "Los animales en el zoologico son: " << endl;
+    for(itMap = this->mapaAnimalesTotal.begin(); itMap != this->mapaAnimalesTotal.end(); ++itMap){
+        cout << "ID:" << itMap->first << endl;
+        cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getNombre() << "Tipo de alimentación: " << itMap->second->getAlimentacion() << endl;
     }
 }

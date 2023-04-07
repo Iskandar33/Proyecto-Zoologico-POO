@@ -21,6 +21,7 @@ class Sistema{
 protected:
     int contHabitats;
     int contAnimales;
+    unordered_map<int, Animal*> mapaAnimalesTotal;
     unordered_map<int, Habitat*> mapaHabitats;
     
 public:
@@ -31,6 +32,7 @@ public:
     void mostrarHabitats();
     void listarHabitats();
     void ingresarAccionAnimal();
+    void mostrarAnimalTotal();
 
 };
 #endif
