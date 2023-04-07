@@ -16,7 +16,7 @@ protected:
     string especie;
     Habitat* pHabitat;
     int id;
-    string habitatPert;
+    string habitatPertenece;
     int tipoAlimentacion;
 
 public:
