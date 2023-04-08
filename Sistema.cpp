@@ -75,12 +75,9 @@ void Sistema::listarHabitats(){
 
 void Sistema::ingresarAccionAnimal(){
     string accion;
-    int opc;
     Animal* pTempAnimal;
     this->mostrarAnimalTotal();
-    cout << "Ingrese el ID del animal a seleccionar: " << endl;
-    cin >> opc;
-    pTempAnimal = this->mapaAnimalesTotal.find(opc)->second;
+    pTempAnimal = obtenerAnimalMap();
     cout << "Las acciones que puede realizar un animal son: " << endl;
     cout << "1. Comer.\n2.Jugar.\n3.Dormir." << endl;
     cout << "Ingrese el nombre de la acción a realizar: " << endl; 
@@ -104,4 +101,38 @@ void Sistema::mostrarAnimalTotal(){
         cout << "ID:" << itMap->first << endl;
         cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getNombre() << "Tipo de alimentación: " << itMap->second->getAlimentacion() << endl;
     }
+}
+
+Animal* Sistema::obtenerAnimalMap(){
+    int opc;
+    Animal* pTempAnimal;
+    cout << "Ingrese el ID del animal a seleccionar: " << endl;
+    cin >> opc;
+    pTempAnimal = this->mapaAnimalesTotal.find(opc)->second;
+    return pTempAnimal;
+}
+
+void Sistema::editarAlimentacion(){
+    Animal* pTempAnimal;
+    string opc;
+    this->mostrarAnimalTotal();
+    pTempAnimal = obtenerAnimalMap();
+    cout << "¿Desea agregar o eliminar algún alimento?" << endl;
+    cin.ignore();
+    getline(cin, opc, '\n');
+    if(opc == "Agregar"){
+        string comida;
+        cout << "Ingrese la comida: " << endl;
+        cin.ignore();
+        getline(cin, comida, '\n');
+        pTempAnimal->agregarComida(comida);
+    }
+    else if(opc == "Eliminar"){
+        int comidaEliminar;
+        pTempAnimal->mostrarComida();
+        cout << "Ingrese el ID de la comida a eliminar: " << endl;
+        cin >> comidaEliminar;
+        pTempAnimal->eliminarComida(comidaEliminar);
+    }
+
 }

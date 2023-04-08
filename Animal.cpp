@@ -66,3 +66,10 @@ void Animal::dormir(Animal* pAnimal){
                 cout << "El animal durmió placidamente." << endl;
         }
 }
+
+void Animal::eliminarComida(int eliminar){
+        cout << "Se eliminará la comida seleccionada." << endl;
+        this->mapaComidas.erase(eliminar);
+        cout << "La comida fue eliminada.";
+        
+}

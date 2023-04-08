@@ -3,9 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "Habitat.h"
-#include "Animal.h"
 #include <unordered_map>
+#include "Animal.h"
 
 using std::string;
 using std::cout;
@@ -25,10 +24,9 @@ public:
     Habitat() = default;
     Habitat(string tipoHabitat);
     string getTipoHabitat();
-    void agregarAnimal(Animal*);
+    void agregarAnimal(Animal* pAnimal);
     int getContAnimal();
     void listarAnimales();
-
 
 };
 #endif

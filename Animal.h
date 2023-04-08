@@ -10,12 +10,13 @@ using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::unordered_map;
 
 class Animal{
 protected:
     string nombre;
     string especie;
-    int id;
+    int id; 
     string habitatPertenece;
     string tipoAlimentacion;
     int horasDormir;
@@ -36,5 +37,6 @@ public:
     void jugar(Animal* pAnimal);
     void dormir(Animal* pAnimal);
     int getHorasDormir();
+    void eliminarComida(int eliminar);
 };
 #endif

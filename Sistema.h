@@ -33,6 +33,8 @@ public:
     void listarHabitats();
     void ingresarAccionAnimal();
     void mostrarAnimalTotal();
+    void editarAlimentacion();
+    Animal* obtenerAnimalMap();
 
 };
 #endif
