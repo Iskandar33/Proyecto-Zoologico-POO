@@ -15,6 +15,10 @@ string Animal::getNombre(){
         return this->nombre;
 }
 
+string Animal::getEspecie(){
+        return this->especie;
+}
+
 string Animal::getAlimentacion(){
         return this->tipoAlimentacion;
 }

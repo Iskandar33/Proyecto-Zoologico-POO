@@ -1,17 +1,44 @@
 #include "Sistema.h"
 
 void Sistema::añadirHabitat(){
-    string opc;
+    string habitat;
+    int opc;
     Habitat* pTempHabitat;
     
     cout << "Hay 4 hábitats posibles para crear, estos son:" << endl;
     cout << "1. Desértico \n2. Selvático \n3. Polar \n4.Acuático" << endl;
-    cout << "Ingrese el nombre del hábitat deseado" << endl;
-    cin.ignore();
-    getline(cin, opc, '\n');
-    pTempHabitat = new Habitat(opc);
+    cout << "Ingrese el número del hábitat deseado" << endl;
+    cin >> opc;
+    habitat = cambiarIntHabitat(opc);
+    pTempHabitat = new Habitat(habitat);
     this->mapaHabitats.insert(make_pair(this->contHabitats, pTempHabitat));
     this->contHabitats++;
+}
+
+string Sistema::cambiarIntHabitat(int opc){
+    string habitat;
+    try{
+        if(opc == 1){
+            habitat = "Desertico";
+        }
+        else if(opc == 2){
+            habitat = "Selvatico";
+        }
+        else if(opc == 3){
+            habitat = "Polar";
+        }
+        else if(opc == 4){
+            habitat = "Acuatico";
+        }
+        else{
+            throw(opc);
+        }
+    }
+    catch(int opc2){
+        cout << "El valor dado no es correcto, por favor ingrese de nuevo el dato: " << endl;
+        cin >> opc;
+    }
+    return habitat;
 }
 
 void Sistema::añadirAnimalHabitat(){
@@ -28,25 +55,26 @@ void Sistema::añadirAnimalHabitat(){
 
 Animal* Sistema::crearAnimal(){
     Animal* pTempAnimal;
-    string nombre, especie, habitatPertenece, tipoAlimentacion, comida;
-    int horasDormir;
+    string nombre, especie, habitat, tipoAlimentacion, comida;
+    int horasDormir, opc;
     cout << "Ingrese el nombre: " << endl;
     cin.ignore();
     getline(cin, nombre, '\n');
     cout << "Ingrese la especie: " << endl;
     cin.ignore();
     getline(cin, especie, '\n');
-    cout << "Ingrese el habitat al que pertenece: " << endl;
-    cin.ignore();
-    getline(cin, habitatPertenece, '\n');
-    cout << "La alimentación va de la siguiente forma\n 1. Carnivoros\n2. Herviboros\n3. Omnivoros." << endl;
+    cout << "1. Desértico \n2. Selvático \n3. Polar \n4.Acuático" << endl;
+    cout << "Ingrese el número del habitat al que pertenece" << endl;
+    cin >> opc;
+    habitat = cambiarIntHabitat(opc);
+    cout << "Ingrese el tipo de alimentación\n1. Carnivoros\n2. Herviboros\n3. Omnivoros." << endl;
     cin.ignore();
     getline(cin, tipoAlimentacion, '\n');
-    cout << "Ingrese las horas que el animal debe de dormir : " << endl;
+    cout << "Ingrese las horas que el animal debe de dormir: " << endl;
     cin >> horasDormir;
-    pTempAnimal = new Animal(nombre, especie, this->contAnimales, habitatPertenece, tipoAlimentacion, horasDormir);
+    pTempAnimal = new Animal(nombre, especie, this->contAnimales, habitat, tipoAlimentacion, horasDormir);
     cout << "Ingrese 3 comidas que el animal coma según su alimentación: " << endl;
-    for(int i = 0; i <= 3; i++){
+    for(int i = 0; i < 3; i++){
         cout << "Ingrese la comida: " << endl;
         cin.ignore();
         getline(cin, comida, '\n');
@@ -79,7 +107,7 @@ void Sistema::ingresarAccionAnimal(){
     this->mostrarAnimalTotal();
     pTempAnimal = obtenerAnimalMap();
     cout << "Las acciones que puede realizar un animal son: " << endl;
-    cout << "1. Comer.\n2.Jugar.\n3.Dormir." << endl;
+    cout << "1. Comer.\n2. Jugar.\n3. Dormir." << endl;
     cout << "Ingrese el nombre de la acción a realizar: " << endl; 
     cin.ignore();
     getline(cin, accion, '\n');
@@ -99,7 +127,7 @@ void Sistema::mostrarAnimalTotal(){
     cout << "Los animales en el zoologico son: " << endl;
     for(itMap = this->mapaAnimalesTotal.begin(); itMap != this->mapaAnimalesTotal.end(); ++itMap){
         cout << "ID:" << itMap->first << endl;
-        cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getNombre() << "Tipo de alimentación: " << itMap->second->getAlimentacion() << endl;
+        cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getEspecie() << " Tipo de alimentación: " << itMap->second->getAlimentacion() << " habitat al que pertenece: " << itMap->second->getHabitatPertenece() << endl;
     }
 }
 

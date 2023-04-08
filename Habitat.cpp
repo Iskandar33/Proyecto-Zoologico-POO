@@ -27,6 +27,6 @@ void Habitat::listarAnimales(){
     unordered_map<int, Animal*>::iterator itMap;
     for(itMap = this->mapaAnimales.begin(); itMap != this->mapaAnimales.end(); ++itMap){
         cout << "ID:" << itMap->first << endl;
-        cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getNombre() << "Tipo de alimentación: " << itMap->second->getAlimentacion() << endl;
+        cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getEspecie() << " Tipo de alimentación: " << itMap->second->getAlimentacion() << " habitat al que pertenece: " << itMap->second->getHabitatPertenece()<< endl;
     }
 }

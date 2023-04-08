@@ -27,6 +27,7 @@ protected:
 public:
     Sistema() = default;
     void añadirHabitat();
+    string cambiarIntHabitat(int opc);
     void añadirAnimalHabitat();
     Animal* crearAnimal();
     void mostrarHabitats();

@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include <unordered_map>
-#include "Habitat.h"
 
 using std::string;
 using std::cout;
@@ -31,6 +30,7 @@ public:
     string getHabitatPertenece();
     string getNombre();
     string getAlimentacion();
+    string getEspecie();
     void agregarComida(string comida);
     void comer(Animal* pAnimal);
     void mostrarComida();
