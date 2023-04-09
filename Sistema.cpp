@@ -6,37 +6,38 @@ void Sistema::añadirHabitat(){
     Habitat* pTempHabitat;
     
     cout << "Hay 4 hábitats posibles para crear, estos son:" << endl;
-    cout << "1. Desértico \n2. Selvático \n3. Polar \n4.Acuático" << endl;
+    cout << "1. Desértico \n2. Selvático \n3. Polar \n4. Acuático" << endl;
     cout << "Ingrese el número del hábitat deseado" << endl;
     cin >> opc;
-    habitat = cambiarIntHabitat(opc);
-    pTempHabitat = new Habitat(habitat);
-    this->mapaHabitats.insert(make_pair(this->contHabitats, pTempHabitat));
-    this->contHabitats++;
+    try{
+        habitat = cambiarIntHabitat(opc);
+        pTempHabitat = new Habitat(habitat);
+        this->mapaHabitats.insert(make_pair(this->contHabitats, pTempHabitat));
+        this->contHabitats++;
+        cout << "El habitat fue añadido." << endl;
+    }
+    catch(const std::invalid_argument e){
+        cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+    }
+    
 }
 
 string Sistema::cambiarIntHabitat(int opc){
     string habitat;
-    try{
-        if(opc == 1){
-            habitat = "Desertico";
-        }
-        else if(opc == 2){
-            habitat = "Selvatico";
-        }
-        else if(opc == 3){
-            habitat = "Polar";
-        }
-        else if(opc == 4){
-            habitat = "Acuatico";
-        }
-        else{
-            throw(opc);
-        }
+    if(opc == 1){
+        habitat = "Desertico";
     }
-    catch(int opc2){
-        cout << "El valor dado no es correcto, por favor ingrese de nuevo el dato: " << endl;
-        cin >> opc;
+    else if(opc == 2){
+        habitat = "Selvatico";
+    }
+    else if(opc == 3){
+        habitat = "Polar";
+    }
+    else if(opc == 4){
+        habitat = "Acuatico";
+    }
+    else{
+        throw std::invalid_argument("Se ingresó un dato erroneo.");
     }
     return habitat;
 }
@@ -48,9 +49,16 @@ void Sistema::añadirAnimalHabitat(){
     this->mostrarHabitats();
     cout << "Ingrese el ID del habitat a escoger: " << endl;
     cin >> opc;
-    habitatEscogido = this->mapaHabitats.find(opc)->second;
-    habitatEscogido->agregarAnimal(pTempAnimal);
-    this->mapaAnimalesTotal.insert(make_pair(this->contAnimales, pTempAnimal));
+    if(this->mapaHabitats.find(opc) == this->mapaHabitats.end()){
+        throw std::runtime_error("El elemento ingresado no esta en el mapa.");
+    }
+    else{
+        habitatEscogido = this->mapaHabitats.find(opc)->second;
+        habitatEscogido->agregarAnimal(pTempAnimal);
+        this->mapaAnimalesTotal.insert(make_pair(this->contAnimales, pTempAnimal));
+        this->contAnimales++;
+        cout << "dx" << endl;
+    }
 }
 
 Animal* Sistema::crearAnimal(){
@@ -61,6 +69,7 @@ Animal* Sistema::crearAnimal(){
     cin.ignore();
     getline(cin, nombre, '\n');
     cout << "Ingrese la especie: " << endl;
+    fflush;
     cin.ignore();
     getline(cin, especie, '\n');
     cout << "1. Desértico \n2. Selvático \n3. Polar \n4.Acuático" << endl;
@@ -68,6 +77,7 @@ Animal* Sistema::crearAnimal(){
     cin >> opc;
     habitat = cambiarIntHabitat(opc);
     cout << "Ingrese el tipo de alimentación\n1. Carnivoros\n2. Herviboros\n3. Omnivoros." << endl;
+    fflush;
     cin.ignore();
     getline(cin, tipoAlimentacion, '\n');
     cout << "Ingrese las horas que el animal debe de dormir: " << endl;
@@ -76,6 +86,7 @@ Animal* Sistema::crearAnimal(){
     cout << "Ingrese 3 comidas que el animal coma según su alimentación: " << endl;
     for(int i = 0; i < 3; i++){
         cout << "Ingrese la comida: " << endl;
+        fflush;
         cin.ignore();
         getline(cin, comida, '\n');
         pTempAnimal->agregarComida(comida);
@@ -92,33 +103,51 @@ void Sistema::mostrarHabitats(){
 }
 
 void Sistema::listarHabitats(){
-    unordered_map<int, Habitat*>::iterator itMap;
-    for(itMap = this->mapaHabitats.begin(); itMap != this->mapaHabitats.end(); ++itMap){
-        cout << "ID: " << itMap->first << endl;
-        cout << "Habitat " << itMap->second->getTipoHabitat() << " con " << itMap->second->getContAnimal() << " animales en este"<< endl;
-        cout << "Los animales son: " << endl;
-        itMap->second->listarAnimales();
+    if(this->mapaHabitats.size() == 0){
+        cout << "No hay habitats en el zoologico aún." << endl;
+    }
+    else{
+        unordered_map<int, Habitat*>::iterator itMap;
+        for(itMap = this->mapaHabitats.begin(); itMap != this->mapaHabitats.end(); ++itMap){
+            cout << "ID: " << itMap->first << endl;
+            cout << "Habitat " << itMap->second->getTipoHabitat() << " con " << itMap->second->getContAnimal() << " animales en este"<< endl;
+            cout << "Los animales son: " << endl;
+            itMap->second->listarAnimales();
+        }
     }
 }
 
 void Sistema::ingresarAccionAnimal(){
-    string accion;
-    Animal* pTempAnimal;
-    this->mostrarAnimalTotal();
-    pTempAnimal = obtenerAnimalMap();
-    cout << "Las acciones que puede realizar un animal son: " << endl;
-    cout << "1. Comer.\n2. Jugar.\n3. Dormir." << endl;
-    cout << "Ingrese el nombre de la acción a realizar: " << endl; 
-    cin.ignore();
-    getline(cin, accion, '\n');
-    if(accion == "Comer"){
-        pTempAnimal->comer(pTempAnimal);
-    }
-    else if(accion == "Jugar"){
-        pTempAnimal->jugar(pTempAnimal);
+    if(this->mapaAnimalesTotal.size() == 0){
+        cout << "No hay animales en el zoologico actualmente." << endl;
     }
     else{
-        pTempAnimal->dormir(pTempAnimal);
+        int accion;
+        Animal* pTempAnimal;
+        this->mostrarAnimalTotal();
+        try{
+            pTempAnimal = obtenerAnimalMap();
+            cout << "Las acciones que puede realizar un animal son: " << endl;
+            cout << "1. Comer.\n2. Jugar.\n3. Dormir." << endl;
+            cout << "Ingrese el número de la acción a realizar: " << endl; 
+            cin >> accion;
+            if(accion == 1){
+                pTempAnimal->comer(pTempAnimal);
+            }
+            else if(accion == 2){
+                pTempAnimal->jugar(pTempAnimal);
+            }
+            else if(accion == 3){
+                pTempAnimal->dormir(pTempAnimal);
+            }
+            else{
+                throw std::invalid_argument("Se ingresó un dato erroneo.");
+            }
+        }
+        catch(const std::runtime_error e){
+            cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+        }
+        
     }
 }
 
@@ -132,35 +161,62 @@ void Sistema::mostrarAnimalTotal(){
 }
 
 Animal* Sistema::obtenerAnimalMap(){
-    int opc;
     Animal* pTempAnimal;
-    cout << "Ingrese el ID del animal a seleccionar: " << endl;
-    cin >> opc;
-    pTempAnimal = this->mapaAnimalesTotal.find(opc)->second;
+    if(this->mapaAnimalesTotal.size() == 0){
+        cout << "No hay animales en el zoologico actualmente." << endl;
+    }
+    else{
+        int opc;
+        cout << "Ingrese el ID del animal a seleccionar: " << endl;
+        cin >> opc;
+        if(this->mapaHabitats.find(opc) == this->mapaHabitats.end()){
+            throw std::runtime_error("El elemento ingresado no esta en el mapa.");
+        }
+        else{
+            pTempAnimal = this->mapaAnimalesTotal.find(opc)->second;
+        }       
+    } 
     return pTempAnimal;
 }
 
 void Sistema::editarAlimentacion(){
-    Animal* pTempAnimal;
-    string opc;
-    this->mostrarAnimalTotal();
-    pTempAnimal = obtenerAnimalMap();
-    cout << "¿Desea agregar o eliminar algún alimento?" << endl;
-    cin.ignore();
-    getline(cin, opc, '\n');
-    if(opc == "Agregar"){
-        string comida;
-        cout << "Ingrese la comida: " << endl;
-        cin.ignore();
-        getline(cin, comida, '\n');
-        pTempAnimal->agregarComida(comida);
+    if(this->mapaAnimalesTotal.size() == 0){
+        cout << "No hay animales en el zoologico aún." << endl;
     }
-    else if(opc == "Eliminar"){
-        int comidaEliminar;
-        pTempAnimal->mostrarComida();
-        cout << "Ingrese el ID de la comida a eliminar: " << endl;
-        cin >> comidaEliminar;
-        pTempAnimal->eliminarComida(comidaEliminar);
+    else{
+        Animal* pTempAnimal;
+        int opc;
+        this->mostrarAnimalTotal();
+        try{
+            pTempAnimal = obtenerAnimalMap();
+        }
+        catch(const std::runtime_error e){
+            cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+        }
+        cout << "1. Agregar alimento\n2. Eliminar alimento" << endl;
+        cin >> opc;
+        if(opc == 1){
+            string comida;
+            cout << "Ingrese la comida: " << endl;
+            cin.ignore();
+            fflush;
+            getline(cin, comida, '\n');
+            pTempAnimal->agregarComida(comida);
+        }
+        else if(opc == 2){
+            int comidaEliminar;
+            pTempAnimal->mostrarComida();
+            cout << "Ingrese el ID de la comida a eliminar: " << endl;
+            cin >> comidaEliminar;
+            try{
+                pTempAnimal->eliminarComida(comidaEliminar);
+            }
+            catch(const std::invalid_argument e){
+                cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+            }
+        }
+        else{
+            throw std::invalid_argument("Se ingresó un dato erroneo.");
+        }
     }
-
 }

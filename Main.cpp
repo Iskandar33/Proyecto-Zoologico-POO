@@ -25,15 +25,30 @@ void mostrarMenu(Sistema* sistemaZoologico){
                 sistemaZoologico->añadirHabitat();
                 break;
             case 2:
-                sistemaZoologico->añadirAnimalHabitat();
+                try{
+                    sistemaZoologico->añadirAnimalHabitat();
+                }
+                catch(const std::runtime_error e){
+                    cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+                }
             case 3:
                 sistemaZoologico->listarHabitats();
                 break;
             case 4:
-                sistemaZoologico->ingresarAccionAnimal();
+                try{
+                    sistemaZoologico->ingresarAccionAnimal();
+                }
+                catch(std::invalid_argument e){
+                    cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+                }
                 break;
             case 5:
-                sistemaZoologico->editarAlimentacion();
+                try{
+                    sistemaZoologico->editarAlimentacion();
+                }
+                catch(const std::invalid_argument e){
+                    cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+                }
                 break;
         }
     }while(opc != 0);

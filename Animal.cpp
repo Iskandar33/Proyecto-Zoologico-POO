@@ -38,7 +38,12 @@ void Animal::comer(Animal* pAnimal){
         pAnimal->mostrarComida();
         cout << "Seleccione mediante el ID, la comida que desea darle: " << endl;
         cin >> opc;
-        cout << "El animal fue alimentado con " << this->mapaComidas.find(opc)->second;
+        if(this->mapaComidas.find(opc) == this->mapaComidas.end()){
+                throw std::invalid_argument("El dato ingresado no esta en el mapa");
+        }
+        else{
+                cout << "El animal fue alimentado con " << this->mapaComidas.find(opc)->second;
+        }
 }
 
 void Animal::mostrarComida(){
@@ -55,6 +60,7 @@ void Animal::jugar(Animal* pAnimal){
         }
         else{
                 cout << "El animal jugó mucho a Overwatchgod y se volvió top 500" << endl;
+                this->verificadorJugar = 1;
         }
 }
 
@@ -72,8 +78,12 @@ void Animal::dormir(Animal* pAnimal){
 }
 
 void Animal::eliminarComida(int eliminar){
-        cout << "Se eliminará la comida seleccionada." << endl;
-        this->mapaComidas.erase(eliminar);
-        cout << "La comida fue eliminada.";
-        
+        if(this->mapaComidas.find(eliminar) == this->mapaComidas.end()){
+                throw std::invalid_argument("El dato ingresado no esta en el mapa de comidas");
+        }
+        else{
+                cout << "Se eliminará la comida seleccionada." << endl;
+                this->mapaComidas.erase(eliminar);
+                cout << "La comida fue eliminada.";
+        }
 }
