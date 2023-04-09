@@ -6,4 +6,4 @@ Para compilar y ejecutar el proyecto:
     **./papu** //Ejecuta el ejecutable creado de la instrucción anterior.
 
 ***Diagrama UML***
-![UML](/Proyecto-Zoologico-POO/imagen.jpg)
+![UML](/imagen.jpg)
