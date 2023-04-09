@@ -69,7 +69,6 @@ void Sistema::añadirAnimalHabitat(){
         habitatEscogido->agregarAnimal(pTempAnimal);
         this->mapaAnimalesTotal.insert(make_pair(this->contAnimales, pTempAnimal));
         this->contAnimales++;
-        cout << "dx" << endl;
     }
 }
 
@@ -86,7 +85,6 @@ Animal* Sistema::crearAnimal(){
     getline(cin, nombre, '\n');
     cout << "Ingrese la especie: " << endl;
     fflush;
-    cin.ignore();
     getline(cin, especie, '\n');
     cout << "1. Desértico \n2. Selvático \n3. Polar \n4.Acuático" << endl;
     cout << "Ingrese el número del habitat al que pertenece" << endl;
@@ -103,7 +101,6 @@ Animal* Sistema::crearAnimal(){
     for(int i = 0; i < 3; i++){
         cout << "Ingrese la comida: " << endl;
         fflush;
-        cin.ignore();
         getline(cin, comida, '\n');
         pTempAnimal->agregarComida(comida);
     }
