@@ -19,10 +19,10 @@ using std::getline;
 
 class Sistema{
 protected:
-    int contHabitats;
-    int contAnimales;
-    unordered_map<int, Animal*> mapaAnimalesTotal;
-    unordered_map<int, Habitat*> mapaHabitats;
+    int contHabitats; //Contador para agregar los habitats
+    int contAnimales; //Contador para agregar los animales
+    unordered_map<int, Animal*> mapaAnimalesTotal; //Mapa de animales para acceder a los animales de forma rápida sin tener que acceder a cada habitat
+    unordered_map<int, Habitat*> mapaHabitats;  //Mapa de habitats
     
 public:
     Sistema() = default;

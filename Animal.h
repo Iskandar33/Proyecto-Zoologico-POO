@@ -21,7 +21,7 @@ protected:
     int horasDormir;
     int verificadorJugar;
     int contComida;
-    unordered_map<int, string> mapaComidas;
+    unordered_map<int, string> mapaComidas; //Mapa para guardar las comidas
 
 public:
     Animal() = default;

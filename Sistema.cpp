@@ -1,5 +1,9 @@
 #include "Sistema.h"
 
+/*
+* Para crear y añadir el habitat al sistema
+*/
+
 void Sistema::añadirHabitat(){
     string habitat;
     int opc;
@@ -22,6 +26,10 @@ void Sistema::añadirHabitat(){
     
 }
 
+/*
+* Para saber que habitat se escogió
+*/
+
 string Sistema::cambiarIntHabitat(int opc){
     string habitat;
     if(opc == 1){
@@ -42,6 +50,10 @@ string Sistema::cambiarIntHabitat(int opc){
     return habitat;
 }
 
+/*
+* Primero se crea un animal y luego se añade al habitat escogido
+*/
+
 void Sistema::añadirAnimalHabitat(){
     int opc;
     Animal* pTempAnimal = this->crearAnimal();
@@ -61,6 +73,10 @@ void Sistema::añadirAnimalHabitat(){
     }
 }
 
+/*
+* Para crear al animal y tenerlo a la mano para lo otro que se necesita de él
+*/
+
 Animal* Sistema::crearAnimal(){
     Animal* pTempAnimal;
     string nombre, especie, habitat, tipoAlimentacion, comida;
@@ -76,12 +92,12 @@ Animal* Sistema::crearAnimal(){
     cout << "Ingrese el número del habitat al que pertenece" << endl;
     cin >> opc;
     habitat = cambiarIntHabitat(opc);
+    cout << "Ingrese las horas que el animal debe de dormir: " << endl;
+    cin >> horasDormir;
     cout << "Ingrese el tipo de alimentación\n1. Carnivoros\n2. Herviboros\n3. Omnivoros." << endl;
     fflush;
     cin.ignore();
     getline(cin, tipoAlimentacion, '\n');
-    cout << "Ingrese las horas que el animal debe de dormir: " << endl;
-    cin >> horasDormir;
     pTempAnimal = new Animal(nombre, especie, this->contAnimales, habitat, tipoAlimentacion, horasDormir);
     cout << "Ingrese 3 comidas que el animal coma según su alimentación: " << endl;
     for(int i = 0; i < 3; i++){
@@ -94,6 +110,10 @@ Animal* Sistema::crearAnimal(){
     return pTempAnimal;
 }
 
+/*
+* Para mostrar los habitats solamente
+*/
+
 void Sistema::mostrarHabitats(){
     unordered_map<int, Habitat*>::iterator itMap;
     for(itMap = this->mapaHabitats.begin(); itMap != this->mapaHabitats.end(); ++itMap){
@@ -101,6 +121,10 @@ void Sistema::mostrarHabitats(){
         cout << "Habitat " << itMap->second->getTipoHabitat() << " con " << itMap->second->getContAnimal() << " animales en este"<< endl;
     }
 }
+
+/*
+* Para mostrar los habitats junto a sus animales
+*/
 
 void Sistema::listarHabitats(){
     if(this->mapaHabitats.size() == 0){
@@ -116,6 +140,10 @@ void Sistema::listarHabitats(){
         }
     }
 }
+
+/*
+* Para poder ingresar e invocar a la función que se requiera según la opción escogida
+*/
 
 void Sistema::ingresarAccionAnimal(){
     if(this->mapaAnimalesTotal.size() == 0){
@@ -151,6 +179,10 @@ void Sistema::ingresarAccionAnimal(){
     }
 }
 
+/*
+* Para mostrar a los animales en el mapa de animales del sistema
+*/
+
 void Sistema::mostrarAnimalTotal(){
     unordered_map<int, Animal*>::iterator itMap;
     cout << "Los animales en el zoologico son: " << endl;
@@ -159,6 +191,10 @@ void Sistema::mostrarAnimalTotal(){
         cout << "Nombre: " << itMap->second->getNombre() << " Especie: " << itMap->second->getEspecie() << " Tipo de alimentación: " << itMap->second->getAlimentacion() << " habitat al que pertenece: " << itMap->second->getHabitatPertenece() << endl;
     }
 }
+
+/*
+* Para obtener al animal del mapa del sistema con try
+*/
 
 Animal* Sistema::obtenerAnimalMap(){
     Animal* pTempAnimal;
@@ -178,6 +214,10 @@ Animal* Sistema::obtenerAnimalMap(){
     } 
     return pTempAnimal;
 }
+
+/*
+* Para invocar a la función requerida según la elección
+*/
 
 void Sistema::editarAlimentacion(){
     if(this->mapaAnimalesTotal.size() == 0){

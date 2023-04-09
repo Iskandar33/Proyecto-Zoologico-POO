@@ -7,6 +7,9 @@ string Habitat::getTipoHabitat(){
 Habitat::Habitat(string tipoHabitat)
         : tipoHabitat(tipoHabitat){}
 
+/*
+* Para agregar el animal al habitat
+*/
 
 void Habitat::agregarAnimal(Animal* pAnimal){
     if(pAnimal->getHabitatPertenece() == this->tipoHabitat){
@@ -22,6 +25,10 @@ void Habitat::agregarAnimal(Animal* pAnimal){
 int Habitat::getContAnimal(){
     return this->contAnimal;
 }
+
+/*
+* Para imprimir a los animales
+*/
 
 void Habitat::listarAnimales(){
     unordered_map<int, Animal*>::iterator itMap;

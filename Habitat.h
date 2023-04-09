@@ -16,9 +16,12 @@ using std::getline;
 
 class Habitat{
 protected:
-    string tipoHabitat;
-    int contAnimal;
-    unordered_map<int, Animal*> mapaAnimales;
+    string tipoHabitat; //Lo que define si es Selvático, Desértico, etc. No es necesario la creación de subclases
+                        /* debido a que la única diferencia entre los habitats, es el nombre, no hay ningun atributo
+                        * que sea solo de cierto habitat o alguna función que sea única de un habitat en especifico
+                        */
+    int contAnimal; //Contador de animales para agregarlos al mapa
+    unordered_map<int, Animal*> mapaAnimales; //Mapa de animales para tener los animales pertenecientes a un habitat
 
 public:
     Habitat() = default;

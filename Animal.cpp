@@ -32,6 +32,9 @@ void Animal::agregarComida(string comida){
         this->contComida++;
 }
 
+/*
+* Para decidir la comida y darsela
+*/
 void Animal::comer(Animal* pAnimal){
         int opc;
         cout << "Se mostrará las comidas que puede escoger para alimentar al animal." << endl;
@@ -46,6 +49,10 @@ void Animal::comer(Animal* pAnimal){
         }
 }
 
+/*
+* Para mostrar la comida que tiene el animal en su dieta
+*/
+
 void Animal::mostrarComida(){
         unordered_map<int, string>::iterator itMap;
         for(itMap = this->mapaComidas.begin(); itMap != this->mapaComidas.end(); ++itMap){
@@ -53,6 +60,10 @@ void Animal::mostrarComida(){
                 cout << itMap->second << endl;
         }
 }
+
+/*
+* Para verificar si el animal ya jugó y si no es así, jugar
+*/
 
 void Animal::jugar(Animal* pAnimal){
         if(this->verificadorJugar == 1){
@@ -63,6 +74,10 @@ void Animal::jugar(Animal* pAnimal){
                 this->verificadorJugar = 1;
         }
 }
+
+/*
+* Para verificar las horas que se escojan para que el animal duerma, si son suficientes que duerma sino, que se notifique
+*/
 
 void Animal::dormir(Animal* pAnimal){
         int horas;
@@ -76,6 +91,10 @@ void Animal::dormir(Animal* pAnimal){
                 cout << "El animal durmió placidamente." << endl;
         }
 }
+
+/*
+* Para eliminar la comida que se escogió
+*/
 
 void Animal::eliminarComida(int eliminar){
         if(this->mapaComidas.find(eliminar) == this->mapaComidas.end()){
