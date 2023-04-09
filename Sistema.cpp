@@ -229,34 +229,35 @@ void Sistema::editarAlimentacion(){
         this->mostrarAnimalTotal();
         try{
             pTempAnimal = obtenerAnimalMap();
-        }
-        catch(const std::runtime_error e){
-            cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
-        }
-        cout << "1. Agregar alimento\n2. Eliminar alimento" << endl;
-        cin >> opc;
-        if(opc == 1){
-            string comida;
-            cout << "Ingrese la comida: " << endl;
-            cin.ignore();
-            fflush;
-            getline(cin, comida, '\n');
-            pTempAnimal->agregarComida(comida);
-        }
-        else if(opc == 2){
-            int comidaEliminar;
-            pTempAnimal->mostrarComida();
-            cout << "Ingrese el ID de la comida a eliminar: " << endl;
-            cin >> comidaEliminar;
-            try{
-                pTempAnimal->eliminarComida(comidaEliminar);
+            cout << "1. Agregar alimento\n2. Eliminar alimento" << endl;
+            cin >> opc;
+            if(opc == 1){
+                string comida;
+                cout << "Ingrese la comida: " << endl;
+                cin.ignore();
+                fflush;
+                getline(cin, comida, '\n');
+                pTempAnimal->agregarComida(comida);
             }
-            catch(const std::invalid_argument e){
-                cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
-            }
+            else if(opc == 2){
+                int comidaEliminar;
+                pTempAnimal->mostrarComida();
+                cout << "Ingrese el ID de la comida a eliminar: " << endl;
+                cin >> comidaEliminar;
+                try{
+                    pTempAnimal->eliminarComida(comidaEliminar);
+                }
+                catch(const std::invalid_argument e){
+                    cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+                }
         }
         else{
             throw std::invalid_argument("Se ingresó un dato erroneo.");
         }
+        }
+        catch(const std::runtime_error e){
+            cout << "SE PRESENTÓ UN ERROR: " << e.what() << endl;
+        }
+        
     }
 }
