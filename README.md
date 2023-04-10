@@ -12,6 +12,7 @@ Este Zoológico deja actuar con bastante **libertad al usuario**, al no haber pr
 
 ### ***Funcionalidades del zoológico***
 Menú principal del Zoológico
+
 ![menuZoo.png](/Imagenes/menuZoo.png)
 
 Las opciones se mostraran a continuación: 
@@ -43,33 +44,36 @@ Menú de ordenes
 Después, según la orden, se procede a hacer lo pedido
 
 **Comer**
-    Menú para escoger la comida
+Menú para escoger la comida
     ![menuComidas.png](/Imagenes/menuComidas.png)
-    Luego de comer
+
+Luego de comer
     ![finComida.png](/Imagenes/finComida.png)
 
 **Jugar**
-    Al escoger la opción jugar, se procede a dar un mensaje del animal jugando
+Al escoger la opción jugar, se procede a dar un mensaje del animal jugando
     ![mensajeJugar.png](/Imagenes/mensajeJugar.png)
 
 **Dormir**
-    Al escoger la opción de dormir, se le pide al usuario las horas que el animal debe dormir, tienen que ser más de las horas mínimas para que el animal pueda dormir sino, se le notifica que las horas ingresadas es menor a las horas mínimas
+Al escoger la opción de dormir, se le pide al usuario las horas que el animal debe dormir, tienen que ser más de las horas mínimas para que el animal pueda dormir sino, se le notifica que las horas ingresadas es menor a las horas mínimas
     ![dormirBien.png](/Imagenes/dormirBien.png)
-    Notificación de horas menores a las mínimas
+
+Notificación de horas menores a las mínimas
     ![dormirMal.png](/Imagenes/dormirMal.png)
 
 ### ***Editar la alimentación de un animal***
-    Al escoger esta opción, se escogera un animal del zoológico como en el punto anterior, después de esto aparecerá un minimenú para escoger si agregar alguna comida o eliminar
+Al escoger esta opción, se escogera un animal del zoológico como en el punto anterior, después de esto aparecerá un minimenú para escoger si agregar alguna comida o eliminar
     ![miniMenuComida.png](/Imagenes/miniMenuComida.png)
 
 ***Agregar***
-    Al escoger agregar, se pide el nombre de la comida a agregar, para luego agregarla a la dieta del animal
+Al escoger agregar, se pide el nombre de la comida a agregar, para luego agregarla a la dieta del animal
     ![agregarComida.png](/Imagenes/agregarComida.png)
-    Prueba de que agregó
+
+Prueba de que agregó
     ![comidaAgregada.png](/Imagenes/comidaAgregada.png)
 
 ***Eliminar***
-    Al escoger eliminar, se pide al usuario que ingrese el número de la comida a eliminar, luego se procede a eliminarse de la dieta del animal
+Al escoger eliminar, se pide al usuario que ingrese el número de la comida a eliminar, luego se procede a eliminarse de la dieta del animal
     ![eliminarComida](/Imagenes/eliminarComida.png)
 
 ***Diagrama UML***
