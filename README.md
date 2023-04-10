@@ -28,29 +28,29 @@ Luego, se procede a preguntar en que hábitat se desea guardar
 
 ### ***Listar los hábitats y sus animales***
 En esta opción, se muestra cada hábitat con los animales que tienen guardados
-![ListarHabitats](/Imagenes/listarHabitats)
+![listarHabitats](/Imagenes/listarHabitats.png)
 
 ### ***Darle una orden a un animal***
 En esta opción se procede a escoger un animal del zoológico, para luego darle una orden(comer, dormir o jugar)
 Elección del animal
-![eleccionAnimal](/Imagenes/eleccionAnimal)
+![eleccionAnimal](/Imagenes/eleccionAnimal.png)
 Menú de ordenes
-![menuOrdenes](/Imagenes/menuOrdenes)
+![menuOrdenes](/Imagenes/menuOrdenes.png)
 Después, según la orden, se procede a hacer lo pedido
 **Comer**
     Menú para escoger la comida
-    ![menuComidas](/Imagenes/menuComidas)
+    ![menuComidas](/Imagenes/menuComidas.png)
     Luego de comer
-    ![finComida](/Imagenes/finComida)
+    ![finComida](/Imagenes/finComida.png)
 **Jugar**
     Al escoger la opción jugar, se procede a dar un mensaje del animal jugando
-    ![mensajeJugar](/Imagenes/mensajeJugar)
+    ![mensajeJugar](/Imagenes/mensajeJugar.png)
 
 **Dormir**
     Al escoger la opción de dormir, se le pide al usuario las horas que el animal debe dormir, tienen que ser más de las horas mínimas para que el animal pueda dormir sino, se le notifica que las horas ingresadas es menor a las horas mínimas
-    ![dormirBien](/Imagenes/dormirBien)
+    ![dormirBien](/Imagenes/dormirBien.png)
     Notificación de horas menores a las mínimas
-    ![dormirMal](/Imagenes/dormirMal)
+    ![dormirMal](/Imagenes/dormirMal.png)
 
 
 
